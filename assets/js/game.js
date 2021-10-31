@@ -1,20 +1,20 @@
-var fightOrSkip = function() {
+var fightOrSkip = function () {
   var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle? Enter 'FIGHT' or 'SKIP' to choose.");
 
-  if(promptFight === "" || promptFight === null) {
+  if (promptFight === "" || promptFight === null) {
     window.alert("You need to provide a valid answer! Please try again!");
     return fightOrSkip();
   }
   promptFight = promptFight.toLowerCase();
 
-  if(promptFight === "skip") {
+  if (promptFight === "skip") {
     var ConfirmSkip = window.confirm("Are you sure you want to quit?");
   }
 
-  if(ConfirmSkip) {
-    window.alert(playerInfo.name + "has decided to skip this fight! Goodbye!");
+  if (ConfirmSkip) {
+    window.alert(playerInfo.name + " has decided to skip this fight! Goodbye!");
     playerInfo.money = Math.max(0, playerInfo.money - 10);
-    
+
     return true;
   }
   return false;
@@ -26,32 +26,32 @@ var fight = function (enemy) {
 
     if (fightOrSkip());
     break;
-    }
+  }
 
-    // remove enemy's health by subtracting the amount set in the playerInfo.attack variable
-    var damage = randomNumber(playerInfo.attack - 3, playerInfo.attack);
+  // remove enemy's health by subtracting the amount set in the playerInfo.attack variable
+  var damage = randomNumber(playerInfo.attack - 3, playerInfo.attack);
 
-    enemy.health = Math.max(0, enemy.health - damage);
-    console.log(playerInfo.name + " attacked " + enemy.name + ". " + enemy.name + " now has " + enemy.health + " health remaining.");
+  enemy.health = Math.max(0, enemy.health - damage);
+  console.log(playerInfo.name + " attacked " + enemy.name + ". " + enemy.name + " now has " + enemy.health + " health remaining.");
 
-    // check enemy's health
-    if (enemy.health <= 0) {
-      window.alert(enemy.name + " has died!");
-      playerInfo.money = playerInfo.money + 20;
-    } else {
-      window.alert(enemy.name + " still has " + enemy.health + " health left.");
-    }
+  // check enemy's health
+  if (enemy.health <= 0) {
+    window.alert(enemy.name + " has died!");
+    playerInfo.money = playerInfo.money + 20;
+  } else {
+    window.alert(enemy.name + " still has " + enemy.health + " health left.");
+  }
 
-    var damage = randomNumber(enemy.attack - 3, enemy.attack);
-    playerInfo.health = Math.max(0, playerInfo.health - damage);
-    console.log(enemy.name + " attacked " + playerInfo.name + ". " + playerInfo.name + " now has " + playerInfo.health + " health remaining.");
+  var damage = randomNumber(enemy.attack - 3, enemy.attack);
+  playerInfo.health = Math.max(0, playerInfo.health - damage);
+  console.log(enemy.name + " attacked " + playerInfo.name + ". " + playerInfo.name + " now has " + playerInfo.health + " health remaining.");
 
-    if (playerInfo.health <= 0) {
-      window.alert(playerInfo.name + " has died!");
-    } else {
-      window.alert(playerInfo.name + " still has " + playerInfo.health + " health left.")
-    }
-  };
+  if (playerInfo.health <= 0) {
+    window.alert(playerInfo.name + " has died!");
+  } else {
+    window.alert(playerInfo.name + " still has " + playerInfo.health + " health left.")
+  }
+};
 
 var startGame = function () {
   //Reset player stats
@@ -97,22 +97,20 @@ var endGame = function () {
 };
 
 var shop = function () {
-  var shopOptionPrompt = window.prompt("Would you like to REFILL your health, UPGRADE your attack or LEAVE the store? Please enter one 'REFILL', 'UPGRADE', or 'LEAVE' to make a choice.");
-
+  var shopOptionPrompt = window.prompt("Would you like to REFILL your health, UPGRADE your attack or LEAVE the store? Please enter one, 1 for REFILL, 2 for UPGRADE, or 3 for LEAVE to make a choice.");
+  
+  shopOptionPrompt = parseInt(shopOptionPrompt);
   switch (shopOptionPrompt) {
 
-    case "REFILL":
-    case "refill":
-     playerInfo.refillHealth;
-     break;
+    case 1:
+      playerInfo.refillHealth;
+      break;
 
-    case "UPGRADE":
-    case "upgrade":
+    case 2:
       playerInfo.upgradeAttack;
       break;
 
-    case "LEAVE":
-    case "leave":
+    case 3:
       window.alert("Leaving the store.");
       break;
 
@@ -129,7 +127,7 @@ var randomNumber = function (min, max) {
   return value;
 };
 
-var getPlayerName = function() {
+var getPlayerName = function () {
   var name = "";
 
   while (name === "" || name === null) {
